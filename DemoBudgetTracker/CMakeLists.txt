@@ -7,13 +7,20 @@ project(DemoBudgetTrackerApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
+
+
 find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
 endif()
 
-qt_add_executable(DemoBudgetTrackerApp src/main.cpp)
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
+qt_add_executable(DemoBudgetTrackerApp src/main.cpp
+    src/tablemodel.cpp
+    src/tablemodel.h
+)
 
 qt_add_resources(DemoBudgetTrackerApp "configuration"
     PREFIX "/"
@@ -48,3 +55,8 @@ install(TARGETS DemoBudgetTrackerApp
 # make IDEs aware of the QML import path
 set(QML_IMPORT_PATH ${PROJECT_BINARY_DIR}/qml CACHE PATH
     "Path to the custom QML components defined by the project")
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+                                          AUTOMOC TRUE
+                                          CMAKE_CXX_STANDARD 20
+                                          CMAKE_CXX_STANDARD_REQUIRED ON)
