@@ -14,6 +14,7 @@ class ExpensesTableModel : public QAbstractTableModel
     QML_ADDED_IN_VERSION(1, 1)
 
 public:
+    Q_INVOKABLE virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     int rowCount(const QModelIndex & = QModelIndex()) const override;
     int columnCount(const QModelIndex & = QModelIndex()) const override;
 

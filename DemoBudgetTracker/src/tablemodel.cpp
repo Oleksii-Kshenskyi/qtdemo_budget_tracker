@@ -2,6 +2,17 @@
 #include <QAbstractTableModel>
 #include "tablemodel.h"
 
+Q_INVOKABLE QVariant ExpensesTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    if (role != Qt::DisplayRole)
+        return QVariant();
+
+    if (section == 0)
+        return "name";
+    else if (section == 1)
+        return "color";
+    else return "shrug";
+}
+
 int ExpensesTableModel::rowCount(const QModelIndex &) const
 {
     return 2;

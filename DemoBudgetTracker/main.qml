@@ -1,17 +1,40 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls 2.12
+import QtQuick.Controls
 import Models 0.1
+import Qt.labs.qmlmodels
 
 Window {
     visible: true
     visibility: Window.Maximized
     color: "darkGray"
+
+    HorizontalHeaderView {
+        id: horizontalHeader
+        anchors.left: tableView.left
+        anchors.top: parent.top
+        syncView: tableView
+        clip: true
+        delegate: Rectangle {
+            implicitWidth: 120
+            implicitHeight: 30
+            color: "#303030"
+            Text {
+                text: display
+                anchors.centerIn: parent
+                font.pointSize: 16
+                color: "#D0D0D0"
+            }
+        }
+    }
+
     TableView {
-        leftMargin: 10
-        topMargin: 10
-        bottomMargin: 10
-        rightMargin: 10
+        id: tableView
+        leftMargin: 30
+        topMargin: 30
+        bottomMargin: 30
+        rightMargin: 30
         anchors.left: parent.left
         anchors.right: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -20,7 +43,8 @@ Window {
         rowSpacing: 3
         clip: true
 
-        model: ExpensesTableModel {}
+        model: ExpensesTableModel {
+        }
 
         delegate: Rectangle {
             border.color: "black"
