@@ -1,66 +1,29 @@
 import QtQuick
 import QtQuick.Window
-import QtQuick.Controls 2.12
-import QtQuick.Controls
-import Models 0.1
-import Qt.labs.qmlmodels
 
 Window {
     visible: true
     visibility: Window.Maximized
     color: "darkGray"
 
-    HorizontalHeaderView {
-        id: horizontalHeader
-        anchors.left: tableView.left
-        anchors.top: parent.top
-        syncView: tableView
-        clip: true
-        delegate: Rectangle {
-            implicitWidth: 120
-            implicitHeight: 30
-            color: "#303030"
-            Text {
-                text: display
-                anchors.centerIn: parent
-                font.pointSize: 16
-                color: "#D0D0D0"
-            }
-        }
-    }
-
-    TableView {
-        id: tableView
-        leftMargin: 30
-        topMargin: 30
-        bottomMargin: 30
-        rightMargin: 30
+    ExpensesTable {
+        id: expensesTable
+        visible: true
+        anchors.topMargin: 10
         anchors.left: parent.left
         anchors.right: parent.horizontalCenter
-        anchors.bottom: parent.bottom
         anchors.top: parent.top
-        columnSpacing: 3
-        rowSpacing: 3
-        clip: true
+        anchors.bottom: parent.bottom
+    }
 
-        model: ExpensesTableModel {
-        }
-
-        delegate: Rectangle {
-            border.color: "black"
-            border.width: 1
-            implicitWidth: 120
-            implicitHeight: 50
-            color: "#FFE4C4"
-            Text {
-                text: display
-                anchors.centerIn: parent
-                font.pointSize: 16
-            }
-        }
-        Rectangle {
-            anchors.fill: parent
-            color: "darkGray"
-        }
+    // TODO: wire up the controls to the Table Model.
+    ExpenseControls {
+        id: expenseControls
+        visible: true
+        anchors.topMargin: 10
+        anchors.left: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
     }
 }

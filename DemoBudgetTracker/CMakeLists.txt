@@ -36,6 +36,8 @@ qt6_add_qml_module(${CMAKE_PROJECT_NAME}
     RESOURCE_PREFIX "/qt/qml"
     NO_PLUGIN
     QML_FILES main.qml
+              ExpensesTable.qml
+              ExpenseControls.qml
 )
 
 set(QT_QML_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qml")
