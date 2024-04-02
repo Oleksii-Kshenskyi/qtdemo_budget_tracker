@@ -7,7 +7,7 @@
 #include <qqml.h>
 #include <QAbstractTableModel>
 
-class TableModel : public QAbstractTableModel
+class ExpensesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
     QML_ELEMENT

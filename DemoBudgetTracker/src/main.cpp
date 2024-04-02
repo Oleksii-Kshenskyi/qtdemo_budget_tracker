@@ -1,14 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include "tablemodel.h"
 #include "app_environment.h"
-#include "import_qml_components_plugins.h"
-#include "import_qml_plugins.h"
 
 int main(int argc, char *argv[])
 {
-    set_qt_environment();
-
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
@@ -23,8 +20,10 @@ int main(int argc, char *argv[])
         },
         Qt::QueuedConnection);
 
-    engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
+    engine.addImportPath(QCoreApplication::applicationDirPath());
     engine.addImportPath(":/");
+
+    qmlRegisterType<ExpensesTableModel>("Models", 0, 1, "ExpensesTableModel");
 
     engine.load(url);
 

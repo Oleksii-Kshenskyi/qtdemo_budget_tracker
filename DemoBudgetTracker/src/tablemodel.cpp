@@ -2,17 +2,17 @@
 #include <QAbstractTableModel>
 #include "tablemodel.h"
 
-int TableModel::rowCount(const QModelIndex &) const
+int ExpensesTableModel::rowCount(const QModelIndex &) const
 {
-    return 200;
+    return 2;
 }
 
-int TableModel::columnCount(const QModelIndex &) const
+int ExpensesTableModel::columnCount(const QModelIndex &) const
 {
-    return 200;
+    return 2;
 }
 
-QVariant TableModel::data(const QModelIndex &index, int role) const
+QVariant ExpensesTableModel::data(const QModelIndex &index, int role) const
 {
     switch (role) {
     case Qt::DisplayRole:
@@ -24,7 +24,7 @@ QVariant TableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QHash<int, QByteArray> TableModel::roleNames() const
+QHash<int, QByteArray> ExpensesTableModel::roleNames() const
 {
     return { {Qt::DisplayRole, "display"} };
 }

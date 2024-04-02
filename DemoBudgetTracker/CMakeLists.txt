@@ -1,13 +1,8 @@
 cmake_minimum_required(VERSION 3.21.1)
 
-option(LINK_INSIGHT "Link Qt Insight Tracker library" ON)
-option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
-
 project(DemoBudgetTrackerApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
-
-
 
 find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
 
@@ -35,15 +30,15 @@ target_link_libraries(DemoBudgetTrackerApp PRIVATE
     Qt6::Quick
 )
 
-if (BUILD_QDS_COMPONENTS)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/qmlcomponents)
-endif()
+qt6_add_qml_module(${CMAKE_PROJECT_NAME}
+    URI "Main"
+    VERSION 1.0
+    RESOURCE_PREFIX "/qt/qml"
+    NO_PLUGIN
+    QML_FILES main.qml
+)
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules)
-
-if (LINK_INSIGHT)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/insight)
-endif ()
+set(QT_QML_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qml")
 
 include(GNUInstallDirs)
 install(TARGETS DemoBudgetTrackerApp
