@@ -13,7 +13,7 @@ These are the things still left to do in the demo:
 1. [DONE] Add Expense: A simple form where users can input an expense amount, category (from a predefined list), and a note.
 2. [DONE] View Expenses: A list or table displaying added expenses.
 3. [DONE] Category Filtering: Implement a feature to filter the listed expenses by category.
-4. [IN PROGRESS] Basic Data Persistence: Save and load expenses using SQLite.
+4. [DONE] Basic Data Persistence: Save and load expenses using SQLite.
 5. ? Basic Analytics: Add a simple summary (e.g., total expenses) at the bottom of the view expenses list.
 6. ? UI Enhancements: Introduce minor improvements for a better user experience, such as date pickers for expense entries.
 

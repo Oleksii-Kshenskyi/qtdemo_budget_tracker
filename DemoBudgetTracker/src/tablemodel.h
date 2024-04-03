@@ -34,7 +34,6 @@ public slots:
     void filterByCategory(const QString& category);
 
 private:
-    // TODO: Implement saving/loading model's contents to/from a SQLite DB.
     QList<Expense> expenses;
     std::optional<QList<Expense>> maybeFilteredExpenses = QList<Expense>();
 };
