@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-// TODO: Better validation of text fields
 Item {
     property var theModel: null
     property var categoryModel: ["Subscriptions", "Games", "Groceries", "Technology"]
@@ -37,7 +36,6 @@ Item {
             Layout.column: 0
         }
 
-        // TODO: Implement filtering table records by category
         ComboBox {
             id: expenseCategory
             font.pointSize: 12
@@ -64,7 +62,7 @@ Item {
             topPadding: 5
             Layout.row: 2
             Layout.column: 1
-            validator: RegularExpressionValidator{regularExpression: /^[0-9]+.[0-9]+$/}
+            validator: RegularExpressionValidator{regularExpression: /^[0-9]+\.[0-9]+$/}
         }
 
         Button {
