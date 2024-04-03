@@ -3,6 +3,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Item {
+    property var theModel: null
+
     GridLayout {
         columns: 2
         rows: 4
@@ -39,10 +41,11 @@ Item {
             id: expenseCategory
             font.pointSize: 12
             implicitWidth: 200
-            implicitHeight: 40
+            implicitHeight: 50
             topPadding: 5
             Layout.row: 1
             Layout.column: 1
+            model: ["Subscriptions", "Games", "Groceries", "Technology"]
         }
 
         Text {
@@ -62,6 +65,7 @@ Item {
             topPadding: 5
             Layout.row: 2
             Layout.column: 1
+            validator: RegularExpressionValidator{regularExpression: /^[0-9]+.[0-9]+$/}
         }
 
         Button {
@@ -73,6 +77,9 @@ Item {
             Layout.row: 3
             Layout.column: 0
             Layout.columnSpan: 2
+            onClicked: {
+                theModel.addExpense(expenseNameField.text, expenseCategory.currentText, expenseCostField.text);
+            }
         }
     }
 }

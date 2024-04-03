@@ -7,6 +7,12 @@
 #include <qqml.h>
 #include <QAbstractTableModel>
 
+struct Expense {
+    QString name;
+    QString category;
+    double value;
+};
+
 class ExpensesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -20,6 +26,13 @@ public:
 
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
+
+public slots:
+    void addExpense(QString name, QString category, double value);
+
+private:
+    // TODO: Implement saving/loading model's contents to/from a SQLite DB.
+    QList<Expense> expenses;
 };
 
 #endif // TABLEVIEW_H

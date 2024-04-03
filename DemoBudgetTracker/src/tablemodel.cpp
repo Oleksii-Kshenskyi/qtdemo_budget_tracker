@@ -7,29 +7,41 @@ Q_INVOKABLE QVariant ExpensesTableModel::headerData(int section, Qt::Orientation
         return QVariant();
 
     if (section == 0)
-        return "name";
+        return "Name";
     else if (section == 1)
-        return "color";
-    else return "shrug";
+        return "Category";
+    else if (section == 2)
+        return "Value";
+    else assert(false && "ExpensesTableModel::headerData(): unreachable: header index out of bounds.");
 }
 
 int ExpensesTableModel::rowCount(const QModelIndex &) const
 {
-    return 2;
+    return this->expenses.count();
 }
 
 int ExpensesTableModel::columnCount(const QModelIndex &) const
 {
-    return 2;
+    return 3;
 }
 
 QVariant ExpensesTableModel::data(const QModelIndex &index, int role) const
 {
+    if(!index.isValid()) return QVariant();
+
     switch (role) {
-    case Qt::DisplayRole:
-        return QString("%1, %2").arg(index.column()).arg(index.row());
-    default:
-        break;
+        case Qt::DisplayRole: {
+            auto e = this->expenses[index.row()];
+            switch(index.column()) {
+                case 0: return e.name; break;
+                case 1: return e.category; break;
+                case 2: return e.value; break;
+                default: assert(false && "ExpensesTableModel::data(): unreachable!"); break;
+            }
+            break;
+        }
+        default:
+            break;
     }
 
     return QVariant();
@@ -38,4 +50,11 @@ QVariant ExpensesTableModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> ExpensesTableModel::roleNames() const
 {
     return { {Qt::DisplayRole, "display"} };
+}
+
+void ExpensesTableModel::addExpense(QString name, QString category, double value) {
+    this->beginInsertRows(QModelIndex(), this->expenses.count(), this->expenses.count());
+    Expense e { name, category, value };
+    this->expenses.append(e);
+    this->endInsertRows();
 }

@@ -16,9 +16,9 @@ Window {
         anchors.bottom: parent.bottom
     }
 
-    // TODO: wire up the controls to the Table Model.
     ExpenseControls {
         id: expenseControls
+        theModel: expensesTable.theModel
         visible: true
         anchors.topMargin: 10
         anchors.left: parent.horizontalCenter

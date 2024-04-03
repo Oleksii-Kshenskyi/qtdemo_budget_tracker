@@ -6,6 +6,8 @@ import Models 0.1
 import Qt.labs.qmlmodels
 
 Item {
+    property var theModel: expensesModel
+
     HorizontalHeaderView {
         id: horizontalHeader
         anchors.left: tableView.left
@@ -37,18 +39,19 @@ Item {
         clip: true
 
         model: ExpensesTableModel {
+            id: expensesModel
         }
 
         delegate: Rectangle {
             border.color: "black"
             border.width: 1
-            implicitWidth: 120
+            implicitWidth: 250
             implicitHeight: 50
             color: "#FFE4C4"
             Text {
                 text: display
                 anchors.centerIn: parent
-                font.pointSize: 16
+                font.pointSize: 12
             }
         }
         Rectangle {
