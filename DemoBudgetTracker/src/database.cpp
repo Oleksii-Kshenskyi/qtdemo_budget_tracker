@@ -33,14 +33,16 @@ Database::Database() {
 
 Database::~Database() {
     QSqlQuery qd(this->db);
-    qd.exec("DELETE * FROM expenses");
+    if(!qd.exec("DELETE FROM expenses")) {
+        qDebug() << "WARNING: couldn't delete pre-existing records from the DB: " << qd.lastError().text();
+    }
 
     QSqlQuery qi(this->db);
     qi.prepare("INSERT INTO expenses(name, category, value) VALUES (?, ?, ?)");
     QVariantList names;
     QVariantList categories;
     QVariantList values;
-    for(auto e : this->model.getModelData()) {
+    for(auto& e : this->model.getModelData()) {
         names << e.name;
         categories << e.category;
         values << e.value;
