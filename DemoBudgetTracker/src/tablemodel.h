@@ -24,6 +24,11 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
+    void setModelData(const QList<Expense>& new_list);
+    QList<Expense> getModelData() {
+        return this->expenses;
+    }
+
 public slots:
     void addExpense(QString name, QString category, double value);
     void filterByCategory(const QString& category);

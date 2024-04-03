@@ -1,7 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include "common.h"
+#include "tablemodel.h"
 
 #include <QObject>
 #include <QQmlEngine>
@@ -20,10 +20,12 @@ class Database: public QObject
     Q_OBJECT
     QML_ELEMENT
 public:
+    ExpensesTableModel model;
+
     Database();
+    ~Database();
 
 private:
-    QList<Expense> stored_expenses = QList<Expense>();
     QSqlDatabase db;
 };
 

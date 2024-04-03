@@ -85,3 +85,8 @@ void ExpensesTableModel::filterByCategory(const QString& category) {
 
     this->endResetModel();
 }
+
+void ExpensesTableModel::setModelData(const QList<Expense>& new_list) {
+    this->expenses = new_list;
+    this->maybeFilteredExpenses = std::nullopt;
+}

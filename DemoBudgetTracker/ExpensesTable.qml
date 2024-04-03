@@ -2,12 +2,12 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls 2.12
 import QtQuick.Controls
-import Models 0.1
+// import Models 0.1
 import Qt.labs.qmlmodels
 import QtQuick.Layouts
 
 Item {
-    property var theModel: expensesModel
+    property var theModel: cppTheModel
     property var categoryModel: null
 
     ColumnLayout {
@@ -69,9 +69,7 @@ Item {
         Layout.fillHeight: true
         Layout.fillWidth: true
 
-        model: ExpensesTableModel {
-            id: expensesModel
-        }
+        model: cppTheModel
 
         delegate: Rectangle {
             border.color: "black"

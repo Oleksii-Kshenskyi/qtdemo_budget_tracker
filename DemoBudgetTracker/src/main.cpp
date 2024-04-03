@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "database.h"
 #include "tablemodel.h"
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     engine.addImportPath(":/");
 
     Database db;
-    qmlRegisterType<ExpensesTableModel>("Models", 0, 1, "ExpensesTableModel");
+    engine.rootContext()->setContextProperty("cppTheModel", &db.model);
 
     engine.load(url);
 
