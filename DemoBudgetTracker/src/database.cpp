@@ -31,6 +31,9 @@ Database::Database() {
     this->model.setModelData(le);
 }
 
+// TODO: Optimize this. This delete all/repopulate all approach is atrocious.
+//       For example, track modified records via DB's Primary Key, and here on destruction
+//       only update those records that are new/modified.
 Database::~Database() {
     QSqlQuery qd(this->db);
     if(!qd.exec("DELETE FROM expenses")) {
