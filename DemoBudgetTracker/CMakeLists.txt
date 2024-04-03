@@ -4,7 +4,7 @@ project(DemoBudgetTrackerApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick Sql)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
@@ -15,6 +15,9 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 qt_add_executable(DemoBudgetTrackerApp src/main.cpp
     src/tablemodel.cpp
     src/tablemodel.h
+    src/database.h
+    src/database.cpp
+    src/common.h
 )
 
 qt_add_resources(DemoBudgetTrackerApp "configuration"
@@ -28,6 +31,7 @@ target_link_libraries(DemoBudgetTrackerApp PRIVATE
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::Sql
 )
 
 qt6_add_qml_module(${CMAKE_PROJECT_NAME}

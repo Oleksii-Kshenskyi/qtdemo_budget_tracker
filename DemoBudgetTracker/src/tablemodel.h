@@ -9,17 +9,12 @@
 #include <qqml.h>
 #include <QAbstractTableModel>
 
-struct Expense {
-    QString name;
-    QString category;
-    double value;
-};
+#include "common.h"
 
 class ExpensesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
     QML_ELEMENT
-    QML_ADDED_IN_VERSION(1, 1)
 
 public:
     Q_INVOKABLE virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

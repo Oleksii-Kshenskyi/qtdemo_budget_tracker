@@ -4,11 +4,6 @@
 #include <QAbstractTableModel>
 #include "tablemodel.h"
 
-enum ModelDisplayRole {
-    Display = 0,
-    Filter,
-};
-
 Q_INVOKABLE QVariant ExpensesTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role != Qt::DisplayRole)
         return QVariant();
