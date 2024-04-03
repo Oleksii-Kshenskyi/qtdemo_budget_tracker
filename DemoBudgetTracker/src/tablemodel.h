@@ -1,6 +1,8 @@
 #ifndef TABLEVIEW_H
 #define TABLEVIEW_H
 
+#include <optional>
+
 #include <QObject>
 #include <QQmlEngine>
 
@@ -29,10 +31,12 @@ public:
 
 public slots:
     void addExpense(QString name, QString category, double value);
+    void filterByCategory(const QString& category);
 
 private:
     // TODO: Implement saving/loading model's contents to/from a SQLite DB.
     QList<Expense> expenses;
+    std::optional<QList<Expense>> maybeFilteredExpenses = QList<Expense>();
 };
 
 #endif // TABLEVIEW_H

@@ -8,6 +8,7 @@ import QtQuick.Layouts
 
 Item {
     property var theModel: expensesModel
+    property var categoryModel: null
 
     ColumnLayout {
          anchors.fill: parent
@@ -31,11 +32,13 @@ Item {
 
              ComboBox {
                  id: categoryFilter
-                 model: ["KEKW"]
-                 // Layout.fillWidth: true
+                 model: ["<ALL>"].concat(categoryModel)
                  Layout.preferredHeight: 50
                  Layout.preferredWidth: 200
                  font.pointSize: 12
+                 onCurrentTextChanged: {
+                    theModel.filterByCategory(categoryFilter.currentText);
+                 }
              }
          }
 

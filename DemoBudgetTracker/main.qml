@@ -9,6 +9,7 @@ Window {
     ExpensesTable {
         id: expensesTable
         visible: true
+        categoryModel: expenseControls.categoryModel
         anchors.topMargin: 10
         anchors.leftMargin: 30
         anchors.left: parent.left

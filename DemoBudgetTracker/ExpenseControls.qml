@@ -5,6 +5,7 @@ import QtQuick.Layouts
 // TODO: Better validation of text fields
 Item {
     property var theModel: null
+    property var categoryModel: ["Subscriptions", "Games", "Groceries", "Technology"]
 
     GridLayout {
         columns: 2
@@ -45,7 +46,7 @@ Item {
             topPadding: 5
             Layout.row: 1
             Layout.column: 1
-            model: ["Subscriptions", "Games", "Groceries", "Technology"]
+            model: categoryModel
         }
 
         Text {
