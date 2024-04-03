@@ -10,6 +10,7 @@ Window {
         id: expensesTable
         visible: true
         anchors.topMargin: 10
+        anchors.leftMargin: 30
         anchors.left: parent.left
         anchors.right: parent.horizontalCenter
         anchors.top: parent.top

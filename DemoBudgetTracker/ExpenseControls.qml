@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+// TODO: Better validation of text fields
 Item {
     property var theModel: null
 
@@ -31,12 +32,11 @@ Item {
         Text {
             text: "Category:"
             font.pointSize: 12
-            // width: 300
-            // height: 40
             Layout.row: 1
             Layout.column: 0
         }
 
+        // TODO: Implement filtering table records by category
         ComboBox {
             id: expenseCategory
             font.pointSize: 12
@@ -51,8 +51,6 @@ Item {
         Text {
             text: "Cost:"
             font.pointSize: 12
-            // width: 300
-            // height: 40
             Layout.row: 2
             Layout.column: 0
         }

@@ -4,19 +4,48 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls
 import Models 0.1
 import Qt.labs.qmlmodels
+import QtQuick.Layouts
 
 Item {
     property var theModel: expensesModel
 
+    ColumnLayout {
+         anchors.fill: parent
+         spacing: 20
+
+         RowLayout {
+             Layout.preferredHeight: 50
+             Layout.preferredWidth: 400
+             spacing: tableView.columnSpacing
+
+
+             Text {
+                font.pointSize: 14
+                text: "Filter by Category:"
+                Layout.preferredHeight: 50
+                Layout.preferredWidth: 200
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignRight
+                Layout.rightMargin: 3
+             }
+
+             ComboBox {
+                 id: categoryFilter
+                 model: ["KEKW"]
+                 // Layout.fillWidth: true
+                 Layout.preferredHeight: 50
+                 Layout.preferredWidth: 200
+                 font.pointSize: 12
+             }
+         }
+
     HorizontalHeaderView {
         id: horizontalHeader
-        anchors.left: tableView.left
-        anchors.top: parent.top
         syncView: tableView
         clip: true
         delegate: Rectangle {
-            implicitWidth: 120
-            implicitHeight: 30
+            implicitWidth: 200
+            implicitHeight: 50
             color: "#303030"
             Text {
                 text: display
@@ -25,18 +54,17 @@ Item {
                 color: "#D0D0D0"
             }
         }
+        Layout.preferredHeight: 50
+        Layout.fillWidth: true
     }
 
     TableView {
         id: tableView
-        leftMargin: 30
-        topMargin: 30
-        bottomMargin: 30
-        rightMargin: 30
-        anchors.fill: parent
-        columnSpacing: 3
-        rowSpacing: 3
+        columnSpacing: 5
+        rowSpacing: 5
         clip: true
+        Layout.fillHeight: true
+        Layout.fillWidth: true
 
         model: ExpensesTableModel {
             id: expensesModel
@@ -45,7 +73,7 @@ Item {
         delegate: Rectangle {
             border.color: "black"
             border.width: 1
-            implicitWidth: 250
+            implicitWidth: 200
             implicitHeight: 50
             color: "#FFE4C4"
             Text {
@@ -58,5 +86,6 @@ Item {
             anchors.fill: parent
             color: "darkGray"
         }
+    }
     }
 }
