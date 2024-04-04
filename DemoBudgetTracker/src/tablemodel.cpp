@@ -66,7 +66,7 @@ void ExpensesTableModel::addExpense(QString name, QString category, double value
     if(std::isnan(value) || name.trimmed().isEmpty()) return;
 
     this->beginInsertRows(QModelIndex(), this->expenses.count(), this->expenses.count());
-    Expense e { name, category, value };
+    Expense e { true, OpKind::Insert, name, category, value };
     this->expenses.append(e);
     this->endInsertRows();
 }

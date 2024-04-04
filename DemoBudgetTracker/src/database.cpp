@@ -23,6 +23,8 @@ Database::Database() {
     QList<Expense> le;
     while(qs.next()) {
         Expense e;
+        e.marker.is_new = false;
+        e.marker.op_kind = OpKind::Insert;
         e.name = qs.value(1).toString();
         e.category = qs.value(2).toString();
         e.value = qs.value(3).toDouble();
@@ -31,14 +33,7 @@ Database::Database() {
     this->model.setModelData(le);
 }
 
-// TODO: Optimize this. This delete all/repopulate all approach is atrocious.
-//       For example, track modified records via DB's Primary Key, and here on destruction
-//       only update those records that are new/modified.
 Database::~Database() {
-    QSqlQuery qd(this->db);
-    if(!qd.exec("DELETE FROM expenses")) {
-        qDebug() << "WARNING: couldn't delete pre-existing records from the DB: " << qd.lastError().text();
-    }
 
     QSqlQuery qi(this->db);
     qi.prepare("INSERT INTO expenses(name, category, value) VALUES (?, ?, ?)");
@@ -46,6 +41,8 @@ Database::~Database() {
     QVariantList categories;
     QVariantList values;
     for(auto& e : this->model.getModelData()) {
+        if(!e.marker.is_new) continue;
+
         names << e.name;
         categories << e.category;
         values << e.value;
